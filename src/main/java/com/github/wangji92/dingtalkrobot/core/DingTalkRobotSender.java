@@ -5,7 +5,6 @@ import com.dingtalk.api.DingTalkClient;
 import com.dingtalk.api.request.OapiRobotSendRequest;
 import com.dingtalk.api.response.OapiRobotSendResponse;
 import com.google.common.util.concurrent.RateLimiter;
-import com.taobao.api.ApiException;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.util.StringUtils;
 
@@ -74,7 +73,7 @@ public class DingTalkRobotSender {
                 if (!response.isSuccess()) {
                     System.out.println(String.format("send dingtalk errorCode=%s errorMsg=%s", response.getErrcode(), response.getErrmsg()));
                 }
-            } catch (ApiException e) {
+            } catch (Exception e) {
                 System.out.println(String.format("send dingtalk api error=%s", e.getMessage()));
             }
         } catch (Exception e) {

@@ -282,6 +282,14 @@ public class DingTalkRobotLogbackAppendBootstrap {
      * @return
      */
     private EvaluatorFilter<ILoggingEvent> getEvaluatorFilter(String expression, FilterReply onMatch, FilterReply onMismatch) {
+        try {
+            Class.forName("org.codehaus.janino.ScriptEvaluator");
+        } catch (ClassNotFoundException e) {
+            throw new IllegalStateException(
+                "缺少 Janino 依赖（org.codehaus.janino:janino）。关键词/表达式等 EvaluatorFilter 需要 Janino；"
+                    + "请在应用 pom 中显式添加该依赖，或确认 dingtalk-robot-logback-append-spring-boot-start 未排除其传递依赖并已重新打包镜像。",
+                e);
+        }
         // 表达式实践  http://logback.qos.ch/manual/filters.html#EvaluatorFilter
         // 可以使用 event、message、logger、loggerContext、mdc、throwable、throwableProxy 等关键字
         EvaluatorFilter<ILoggingEvent> evaluatorFilter = new EvaluatorFilter<ILoggingEvent>();

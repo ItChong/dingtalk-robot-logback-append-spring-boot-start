@@ -6,14 +6,13 @@
     <groupId>com.github.WangJi92</groupId>
     <artifactId>dingtalk-robot-logback-append-spring-boot-start</artifactId>
     <version>0.1.0</version>
+    <packaging>jar</packaging>
     <name>dingtalk-robot-logback-append-spring-boot-start</name>
     <description>自定义logback append 将日志 通过钉钉API将日志信息通知到群</description>
     <url>https://github.com/WangJi92/dingtalk-robot-logback-append-spring-boot-start</url>
     <properties>
         <java.version>21</java.version>
-        <guava-version>33.4.0-jre</guava-version>
-        <alibaba-dingtalk-service-sdk-version>1.0.1</alibaba-dingtalk-service-sdk-version>
-        <spring-boot.version>3.4.2</spring-boot.version>
+        <spring-boot.version>3.4.5</spring-boot.version>
     </properties>
     <licenses>
         <license>
@@ -25,17 +24,28 @@
 
     <scm>
         <url>https://github.com/WangJi92/dingtalk-robot-logback-append-spring-boot-start</url>
-        <connection>https://github.com/WangJi92/dingtalk-robot-logback-append-spring-boot-start.git</connection>
-        <developerConnection>https://github.com/WangJi92/dingtalk-robot-logback-append-spring-boot-start.gi
-        </developerConnection>
+        <connection>scm:git:https://github.com/WangJi92/dingtalk-robot-logback-append-spring-boot-start.git</connection>
+        <developerConnection>scm:git:https://github.com/WangJi92/dingtalk-robot-logback-append-spring-boot-start.git</developerConnection>
     </scm>
     <developers>
         <developer>
             <name>wangji</name>
             <email>983433479@qq.com</email>
-            <url>https://github.com/WangJi92/dingtalk-robot-logback-append-spring-boot-start.gi</url>
+            <url>https://github.com/WangJi92/dingtalk-robot-logback-append-spring-boot-start</url>
         </developer>
     </developers>
+
+    <distributionManagement>
+        <repository>
+            <id>releases</id>
+            <url>https://nexus.di.wuxiapptec.com/repository/maven-releases/</url>
+        </repository>
+        <snapshotRepository>
+            <id>wuxi-snapshots</id>
+            <url>https://nexus.di.wuxiapptec.com/repository/maven-snapshots/</url>
+        </snapshotRepository>
+    </distributionManagement>
+
     <dependencyManagement>
         <dependencies>
             <dependency>
@@ -47,6 +57,12 @@
             </dependency>
         </dependencies>
     </dependencyManagement>
+    <!--
+      依赖策略：
+      - provided：由 Spring Boot 应用运行时提供（spring-*、logback 等）。
+      - compile：本库字节码直接引用，必须随 starter 传递。Guava/钉钉 SDK/Janino 须写死版本号（不用 ${property}），
+        避免私服只上传 jar、或工具链未解析传递 POM 时版本丢失；Guava 不可标 provided（Spring Boot 默认不带 Guava）。
+    -->
     <dependencies>
         <dependency>
             <groupId>org.springframework.boot</groupId>
@@ -86,13 +102,12 @@
         <dependency>
             <groupId>com.google.guava</groupId>
             <artifactId>guava</artifactId>
-            <version>${guava-version}</version>
-            <scope>provided</scope>
+            <version>33.4.0-jre</version>
         </dependency>
         <dependency>
             <groupId>com.aliyun</groupId>
             <artifactId>alibaba-dingtalk-service-sdk</artifactId>
-            <version>${alibaba-dingtalk-service-sdk-version}</version>
+            <version>1.0.1</version>
             <exclusions>
                 <!-- Legacy artifact not on Maven Central; not used by robot webhook API -->
                 <exclusion>
@@ -101,9 +116,11 @@
                 </exclusion>
             </exclusions>
         </dependency>
+        <!-- Logback EvaluatorFilter 需要 Janino；版本写死以保证传递依赖可解析 -->
         <dependency>
             <groupId>org.codehaus.janino</groupId>
             <artifactId>janino</artifactId>
+            <version>3.1.12</version>
         </dependency>
         <dependency>
             <groupId>org.springframework.boot</groupId>
@@ -161,16 +178,16 @@
     <profiles>
         <profile>
             <id>release</id>
-            <distributionManagement>
-                <snapshotRepository>
-                    <id>oss</id>
-                    <url>https://oss.sonatype.org/content/repositories/snapshots/</url>
-                </snapshotRepository>
-                <repository>
-                    <id>oss</id>
-                    <url>https://oss.sonatype.org/service/local/staging/deploy/maven2/</url>
-                </repository>
-            </distributionManagement>
+<!--            <distributionManagement>-->
+<!--                <snapshotRepository>-->
+<!--                    <id>oss</id>-->
+<!--                    <url>https://oss.sonatype.org/content/repositories/snapshots/</url>-->
+<!--                </snapshotRepository>-->
+<!--                <repository>-->
+<!--                    <id>oss</id>-->
+<!--                    <url>https://oss.sonatype.org/service/local/staging/deploy/maven2/</url>-->
+<!--                </repository>-->
+<!--            </distributionManagement>-->
             <build>
                 <plugins>
                     <!-- Source -->
