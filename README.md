@@ -1,3 +1,9 @@
+## 版本要求
+
+- **Spring Boot 3.x**（Jakarta / Spring Framework 6）
+- **JDK 21**
+- 自 starter **0.1.0** 起按上述环境构建与测试；仍在使用 Spring Boot 2.x 或 JDK 8 的项目请固定使用 **0.0.5** 及更早版本。
+
 ## 1、解决什么问题
 基于钉钉机器人的 logback-append-spring-boot-start，可以通过自定义 logback-append 然后通过钉钉机器人的API 推送到钉钉群，解决线下或者线上 针对错误场景的消息推送,方便开发者快速发现问题解决问题，最终的目的是治理日志，减少异常日志，开发环境快速发现错误。
 ## 2、效果图
@@ -41,6 +47,7 @@
 <dependency>
       <groupId>com.github.WangJi92</groupId>
       <artifactId>dingtalk-robot-logback-append-spring-boot-start</artifactId>
+      <version>0.1.0</version>
   </dependency>
 ```
 ### 3.2  相关配置信息 

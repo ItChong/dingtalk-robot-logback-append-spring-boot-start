@@ -1,0 +1,11 @@
+# Nested maps/lists bind reliably for integration tests (Spring Boot 3)
+spring:
+  dingtalk:
+    logback:
+      append:
+        robot-config:
+          webhook: "https://oapi.dingtalk.com/robot/send?access_token=test-token"
+        log-config:
+          log-level: ERROR
+          append-logger-names:
+            - root

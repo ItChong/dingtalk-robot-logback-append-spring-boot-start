@@ -1,13 +1,12 @@
-//package com.github.wangji92.logback;
-//
-//import org.junit.jupiter.api.Test;
-//import org.springframework.boot.test.context.SpringBootTest;
-//
-//@SpringBootTest
-//class DingtalkRobotLogbackappendSpringBootStartApplicationTests {
-//
-//    @Test
-//    void contextLoads() {
-//    }
-//
-//}
+package com.github.wangji92.dingtalkrobot;
+
+import org.junit.jupiter.api.Test;
+import org.springframework.boot.test.context.SpringBootTest;
+
+@SpringBootTest(classes = DingTalkRobotAppendAutoConfiguration.class)
+class DingtalkRobotLogbackAlarmSpringBootStartApplicationTests {
+
+    @Test
+    void contextLoads() {
+    }
+}

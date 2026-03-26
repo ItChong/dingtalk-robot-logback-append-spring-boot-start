@@ -3,7 +3,7 @@ package com.github.wangji92.dingtalkrobot.core;
 import ch.qos.logback.classic.AsyncAppender;
 import ch.qos.logback.classic.Logger;
 import ch.qos.logback.classic.LoggerContext;
-import ch.qos.logback.classic.boolex.JaninoEventEvaluator;
+import com.github.wangji92.dingtalkrobot.logback.boolex.DingTalkJaninoEventEvaluator;
 import ch.qos.logback.classic.filter.ThresholdFilter;
 import ch.qos.logback.classic.spi.ILoggingEvent;
 import ch.qos.logback.core.filter.EvaluatorFilter;
@@ -21,7 +21,7 @@ import org.springframework.util.Assert;
 import org.springframework.util.CollectionUtils;
 import org.springframework.util.StringUtils;
 
-import javax.annotation.PostConstruct;
+import jakarta.annotation.PostConstruct;
 
 import static ch.qos.logback.core.AsyncAppenderBase.DEFAULT_MAX_FLUSH_TIME;
 
@@ -285,7 +285,7 @@ public class DingTalkRobotLogbackAppendBootstrap {
         // 表达式实践  http://logback.qos.ch/manual/filters.html#EvaluatorFilter
         // 可以使用 event、message、logger、loggerContext、mdc、throwable、throwableProxy 等关键字
         EvaluatorFilter<ILoggingEvent> evaluatorFilter = new EvaluatorFilter<ILoggingEvent>();
-        JaninoEventEvaluator eventEvaluator = new JaninoEventEvaluator();
+        DingTalkJaninoEventEvaluator eventEvaluator = new DingTalkJaninoEventEvaluator();
         // 需要存在关键字才打印
         eventEvaluator.setExpression(expression);
         evaluatorFilter.setEvaluator(eventEvaluator);

@@ -6,18 +6,14 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="dingtalk-robot-logback-demo" />
         <module name="dingtalk-robot-logback-append-spring-boot-start" />
+        <module name="dingtalk-robot-logback-demo" />
       </profile>
     </annotationProcessing>
-    <bytecodeTargetLevel>
-      <module name="dingtalk-robot-logback-append-spring-boot-start" target="1.8" />
-      <module name="dingtalk-robot-logback-demo" target="1.8" />
-    </bytecodeTargetLevel>
   </component>
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
-      <module name="dingtalk-robot-logback-append-spring-boot-start" options="-parameters" />
+      <module name="dingtalk-robot-logback-append-spring-boot-start" options="" />
       <module name="dingtalk-robot-logback-demo" options="-parameters" />
     </option>
   </component>

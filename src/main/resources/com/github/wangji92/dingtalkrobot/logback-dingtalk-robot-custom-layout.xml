@@ -38,7 +38,7 @@
                 <if condition='property("dingTalkLogConfigKewWordExpression").length()>0'>
                     <then>
                         <filter class="ch.qos.logback.core.filter.EvaluatorFilter">
-                            <evaluator class="ch.qos.logback.classic.boolex.JaninoEventEvaluator">
+                            <evaluator class="com.github.wangji92.dingtalkrobot.logback.boolex.DingTalkJaninoEventEvaluator">
                                 <expression>${dingTalkLogConfigKewWordExpression}</expression>
                             </evaluator>
                             <!-- 用于配置符合过滤条件的操作 -->

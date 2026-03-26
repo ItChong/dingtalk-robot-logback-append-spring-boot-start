@@ -73,7 +73,7 @@ ${HOME}%n  ${hostname}%n
     <if condition='property("notifySwitch").length()>0'>
       <then>
         <filter class="ch.qos.logback.core.filter.EvaluatorFilter">
-          <evaluator class="ch.qos.logback.classic.boolex.JaninoEventEvaluator">
+          <evaluator class="com.github.wangji92.dingtalkrobot.logback.boolex.DingTalkJaninoEventEvaluator">
             <expression>return  formattedMessage.contains("通知");</expression>
           </evaluator>
           <!-- 用于配置符合过滤条件的操作 -->
